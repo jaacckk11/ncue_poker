@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>國立彰化師範大學 德州撲克社</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Noto+Sans+TC:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', 'Noto Sans TC', sans-serif;
+        }
+        .hero-bg {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('324505.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+        .section-fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .section-fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white">
+
+    <!-- Header -->
+    <header class="bg-gray-900/80 backdrop-blur-sm fixed top-0 left-0 right-0 z-50">
+        <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-white tracking-wider">
+                <span class="text-indigo-400">NCUE</span> POKER
+            </a>
+            <nav class="hidden md:flex space-x-8 items-center">
+                <a href="#about" class="hover:text-indigo-400 transition-colors">關於我們</a>
+                <a href="#poker101" class="hover:text-indigo-400 transition-colors">撲克入門</a>
+                <a href="#activities" class="hover:text-indigo-400 transition-colors">社團活動</a>
+                <a href="#why-poker" class="hover:text-indigo-400 transition-colors">為何撲克？</a>
+            </nav>
+            <a href="#join" class="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-6 rounded-lg transition-transform duration-300 ease-in-out transform hover:scale-105">
+                立即加入
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <main>
+        <section class="hero-bg h-screen flex items-center justify-center text-center">
+            <div class="px-4">
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-black uppercase tracking-wider leading-tight mb-4">
+                    這不只是一場遊戲<br class="hidden md:block">
+                    <span class="text-indigo-400">這是一場腦力的對決</span>
+                </h1>
+                <p class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-8">
+                    在彰師大德州撲克社，我們鍛鍊決策、管理風險，並學習讀懂人心。<br>加入我們，開啟你的策略思維鍛鍊場。
+                </p>
+                <a href="#why-poker" class="bg-white text-gray-900 font-bold py-3 px-8 rounded-lg text-lg hover:bg-gray-200 transition-transform duration-300 ease-in-out transform hover:scale-105">
+                    探索更多
+                </a>
+            </div>
+        </section>
+
+        <!-- About Us Section -->
+        <section id="about" class="py-20 bg-gray-800 section-fade-in">
+            <div class="container mx-auto px-6">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="rounded-lg overflow-hidden shadow-2xl">
+                        <img src="324504.jpg" alt="社團教學活動" class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <h2 class="text-3xl md:text-4xl font-bold mb-4">超越運氣的 <span class="text-indigo-400">智力競技</span></h2>
+                        <p class="text-gray-300 mb-4 leading-relaxed">
+                            國立彰化師範大學德州撲克社，旨在推廣德州撲克作為一項健康的益智運動。我們深信，德州撲克不僅是娛樂，更是一門結合數學、心理學與決策科學的藝術。
+                        </p>
+                        <p class="text-gray-300 leading-relaxed">
+                            本社嚴格遵守校規，<strong class="text-amber-400">禁止任何形式的現金賭博</strong>。所有活動皆以技術交流與心智鍛鍊為核心，使用積分或紀念品作為獎勵，提供社員一個安全、正向的學習環境。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Poker? Section -->
+        <section id="why-poker" class="py-20 bg-gray-900 section-fade-in">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-2">為什麼你該加入德州撲克社？</h2>
+                <p class="text-gray-400 mb-12 max-w-2xl mx-auto">這不只是一張牌桌，這是你人生的縮影，你將學到課本以外的關鍵技能。</p>
+                <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Feature Card 1 -->
+                    <div class="bg-gray-800 p-8 rounded-xl hover:bg-gray-700 hover:-translate-y-2 transition-all duration-300 shadow-lg">
+                        <div class="bg-indigo-500/10 text-indigo-400 rounded-lg w-16 h-16 flex items-center justify-center mx-auto mb-6">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" /></svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">增進邏輯思維</h3>
+                        <p class="text-gray-400">學習計算機率、分析牌局，在不完整的資訊下，做出最有利的科學決策。</p>
+                    </div>
+                    <!-- Feature Card 2 -->
+                    <div class="bg-gray-800 p-8 rounded-xl hover:bg-gray-700 hover:-translate-y-2 transition-all duration-300 shadow-lg">
+                        <div class="bg-indigo-500/10 text-indigo-400 rounded-lg w-16 h-16 flex items-center justify-center mx-auto mb-6">
+                             <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">鍛鍊心理素質</h3>
+                        <p class="text-gray-400">學會管理情緒、承受壓力，保持冷靜的「撲克臉」，不讓情緒影響你的判斷。</p>
+                    </div>
+                    <!-- Feature Card 3 -->
+                    <div class="bg-gray-800 p-8 rounded-xl hover:bg-gray-700 hover:-translate-y-2 transition-all duration-300 shadow-lg">
+                         <div class="bg-indigo-500/10 text-indigo-400 rounded-lg w-16 h-16 flex items-center justify-center mx-auto mb-6">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">學習風險管理</h3>
+                        <p class="text-gray-400">評估每次下注的風險與回報，在有限的籌碼中，最大化你的長期收益。</p>
+                    </div>
+                    <!-- Feature Card 4 -->
+                    <div class="bg-gray-800 p-8 rounded-xl hover:bg-gray-700 hover:-translate-y-2 transition-all duration-300 shadow-lg">
+                        <div class="bg-indigo-500/10 text-indigo-400 rounded-lg w-16 h-16 flex items-center justify-center mx-auto mb-6">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">拓展人際關係</h3>
+                        <p class="text-gray-400">結交來自不同科系、志同道合的朋友，在牌桌上切磋，在生活中成長。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Poker 101 Section -->
+        <section id="poker101" class="py-20 bg-gray-800 section-fade-in">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold">三分鐘，讓你掌握德州撲克</h2>
+                    <p class="text-gray-400 mt-2">規則很簡單，但策略千變萬化。這是所有新手的起點。</p>
+                </div>
+                <div class="max-w-4xl mx-auto bg-gray-900 rounded-lg p-8 shadow-2xl">
+                    <h3 class="text-2xl font-bold text-center mb-6 text-indigo-400">遊戲基本流程</h3>
+                    <div class="grid md:grid-cols-5 gap-4 text-center">
+                        <div class="flex flex-col items-center">
+                            <div class="bg-indigo-500 rounded-full w-16 h-16 flex items-center justify-center text-2xl font-bold">1</div>
+                            <p class="mt-2 font-semibold">盲注</p>
+                            <p class="text-sm text-gray-400">強制下注</p>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <div class="bg-indigo-500 rounded-full w-16 h-16 flex items-center justify-center text-2xl font-bold">2</div>
+                            <p class="mt-2 font-semibold">底牌</p>
+                            <p class="text-sm text-gray-400">每人發2張牌</p>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <div class="bg-indigo-500 rounded-full w-16 h-16 flex items-center justify-center text-2xl font-bold">3</div>
+                            <p class="mt-2 font-semibold">下注輪</p>
+                            <p class="text-sm text-gray-400">四輪行動機會</p>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <div class="bg-indigo-500 rounded-full w-16 h-16 flex items-center justify-center text-2xl font-bold">4</div>
+                            <p class="mt-2 font-semibold">公共牌</p>
+                            <p class="text-sm text-gray-400">共發5張牌</p>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <div class="bg-indigo-500 rounded-full w-16 h-16 flex items-center justify-center text-2xl font-bold">5</div>
+                            <p class="mt-2 font-semibold">攤牌比大小</p>
+                            <p class="text-sm text-gray-400">贏家全拿</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Activities Section -->
+        <section id="activities" class="py-20 bg-gray-900 section-fade-in">
+            <div class="container mx-auto px-6">
+                 <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold">我們的<span class="text-indigo-400">精彩活動</span></h2>
+                    <p class="text-gray-400 mt-2">從新手到高手，我們都有適合你的活動。</p>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg">
+                        <img src="324504.jpg" alt="新手教學營" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">新手教學營</h3>
+                            <p class="text-gray-400">專為零基礎的你設計，從規則到基本策略，由淺入深，輕鬆上手。</p>
+                        </div>
+                    </div>
+                    <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg">
+                        <img src="324505.jpg" alt="社員練習與交流" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">主題策略研討</h3>
+                            <p class="text-gray-400">定期邀請資深玩家分享進階觀念，如位置理論、底池賠率、心理戰術等。</p>
+                        </div>
+                    </div>
+                    <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg">
+                        <img src="324939.jpg" alt="聯賽優勝者" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">社內積分聯賽</h3>
+                            <p class="text-gray-400">學期制的常態性競賽，透過實戰累積經驗，爭奪學期總冠軍的榮譽。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Join Us Section -->
+        <section id="join" class="py-20 bg-gray-800 section-fade-in">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-4xl md:text-5xl font-black mb-4">準備好迎接挑戰了嗎？</h2>
+                <p class="text-gray-300 text-lg max-w-2xl mx-auto mb-8">
+                    無論你是完全的新手，還是尋找對手的資深玩家，<br>彰師大德州撲克社都歡迎你的加入！
+                </p>
+                <a href="#" class="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-4 px-10 rounded-lg text-xl transition-transform duration-300 ease-in-out transform hover:scale-105 inline-block">
+                    立即加入我們!!
+                </a>
+                <div class="mt-16 text-gray-400">
+                    <p class="text-lg mb-6">追蹤我們的 Instagram，掌握最新社課與活動資訊！</p>
+                    
+                    <div class="flex items-center justify-center space-x-3 md:space-x-4">
+                        <!-- Spade Icon -->
+                        <svg class="w-8 h-8 md:w-10 md:h-10 text-gray-300 hover:text-white transition-transform duration-300 transform hover:scale-125" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                           <path d="M12.93,2.62a1,1,0,0,0-1.86,0L6.4,11.16a1,1,0,0,0,1,1.53H16.54a1,1,0,0,0,1-1.53ZM12,14.69a1,1,0,0,0-1,1V22h2V15.69A1,1,0,0,0,12,14.69Z"/>
+                        </svg>
+
+                        <!-- Diamond Icon -->
+                        <svg class="w-8 h-8 md:w-10 md:h-10 text-red-400 hover:text-red-300 transition-transform duration-300 transform hover:scale-125" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L1 12l11 10 11-10L12 2z"/></svg>
+
+                        <!-- Instagram Button -->
+                        <a href="https://www.instagram.com/ncue_poker?igsh=aXEwZ3BuYnhsdWVn" target="_blank" rel="noopener noreferrer" 
+                           class="bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 text-white font-bold py-3 px-6 md:py-4 md:px-8 rounded-full transition-transform duration-300 ease-in-out transform hover:scale-110 shadow-lg text-lg flex items-center space-x-3">
+                             <svg class="w-6 h-6 md:w-7 md:h-7" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.689-.073-4.948-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4s1.791-4 4-4 4 1.79 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44 1.441-.645 1.441-1.44c0-.795-.645-1.44-1.441-1.44z"/></svg>
+                             <span>Follow on IG</span>
+                        </a>
+
+                        <!-- Heart Icon -->
+                         <svg class="w-8 h-8 md:w-10 md:h-10 text-red-400 hover:text-red-300 transition-transform duration-300 transform hover:scale-125" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+
+                        <!-- Club Icon -->
+                        <svg class="w-8 h-8 md:w-10 md:h-10 text-gray-300 hover:text-white transition-transform duration-300 transform hover:scale-125" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M18.15,10.9a4.24,4.24,0,0,0-2.3-3.44,4.3,4.3,0,0,0-2-3.6,4.23,4.23,0,1,0-7.7,0,4.3,4.3,0,0,0-2,3.6A4.24,4.24,0,0,0,1.85,10.9a4.3,4.3,0,0,0,0,2.2,4.24,4.24,0,0,0,2.3,3.44,4.3,4.3,0,0,0,2,3.6,4.23,4.23,0,1,0,7.7,0,4.3,4.3,0,0,0,2-3.6,4.24,4.24,0,0,0,2.3-3.44A4.3,4.3,0,0,0,18.15,10.9ZM12,15.75a1,1,0,0,0-1,1V22h2V16.75A1,1,0,0,0,12,15.75Z"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 py-6">
+        <div class="container mx-auto px-6 text-center text-gray-500">
+            <p>&copy; 2025 National Changhua University of Education Poker Club. All Rights Reserved.</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Fade-in animation on scroll
+        const sections = document.querySelectorAll('.section-fade-in');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+
+</body>
+</html>
+
+
+
+
