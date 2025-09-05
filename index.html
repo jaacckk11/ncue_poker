@@ -11,6 +11,7 @@
     <style>
         body {
             font-family: 'Inter', 'Noto Sans TC', sans-serif;
+            scroll-behavior: smooth;
         }
         .hero-bg {
             background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('324505.jpg');
@@ -26,6 +27,93 @@
             opacity: 1;
             transform: translateY(0);
         }
+        /* --- Card Styles --- */
+        .card {
+            width: 80px;
+            height: 112px;
+            border-radius: 0.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 0.5rem;
+            font-weight: bold;
+            font-size: 1.25rem; /* Slightly smaller font for better fit */
+            position: relative;
+            background-color: white;
+            color: black;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            flex-shrink: 0;
+        }
+        .card-sm { /* Smaller card for the footer */
+            width: 50px;
+            height: 70px;
+            font-size: 0.8rem;
+            padding: 0.25rem;
+            border-radius: 0.25rem;
+        }
+        .card-sm .suit-center {
+            font-size: 1.5rem;
+        }
+
+        .card-back {
+             background: linear-gradient(135deg, #4f46e5 25%, transparent 25%) -40px 0, 
+                         linear-gradient(-135deg, #4f46e5 25%, transparent 25%) -40px 0,
+                         linear-gradient(135deg, #4f46e5 25%, transparent 25%),
+                         linear-gradient(-135deg, #4f46e5 25%, transparent 25%);
+            background-size: 80px 80px;
+            background-color: #6366f1;
+        }
+        .card .suit-center {
+            font-size: 2.5rem;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .card .rank-top-left {
+            text-align: left;
+        }
+        .card .rank-bottom-right {
+            text-align: right;
+            transform: rotate(180deg);
+        }
+        .is-red { color: #ef4444; }
+
+        /* --- Game UI Styles --- */
+        .game-btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: bold;
+            transition: all 0.2s ease-in-out;
+            cursor: pointer;
+        }
+        .game-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .game-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        input[type="range"] {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%;
+            height: 8px;
+            background: #4a5568;
+            border-radius: 5px;
+            outline: none;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 24px;
+            height: 24px;
+            background: #818cf8;
+            cursor: pointer;
+            border-radius: 50%;
+        }
     </style>
 </head>
 <body class="bg-gray-900 text-white">
@@ -39,17 +127,19 @@
             <nav class="hidden md:flex space-x-8 items-center">
                 <a href="#about" class="hover:text-indigo-400 transition-colors">關於我們</a>
                 <a href="#poker101" class="hover:text-indigo-400 transition-colors">撲克入門</a>
+                <a href="#game" class="hover:text-indigo-400 transition-colors">互動遊戲</a>
                 <a href="#activities" class="hover:text-indigo-400 transition-colors">社團活動</a>
                 <a href="#why-poker" class="hover:text-indigo-400 transition-colors">為何撲克？</a>
             </nav>
-            <a href="#join" class="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-6 rounded-lg transition-transform duration-300 ease-in-out transform hover:scale-105">
+            <a href="https://line.me/R/ti/g/g_3vfyG_vd" target="_blank" rel="noopener noreferrer" class="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-6 rounded-lg transition-transform duration-300 ease-in-out transform hover:scale-105">
                 立即加入
             </a>
         </div>
     </header>
 
-    <!-- Hero Section -->
+    <!-- Main Content -->
     <main>
+        <!-- Hero Section -->
         <section class="hero-bg h-screen flex items-center justify-center text-center">
             <div class="px-4">
                 <h1 class="text-4xl md:text-6xl lg:text-7xl font-black uppercase tracking-wider leading-tight mb-4">
@@ -74,9 +164,8 @@
                     </div>
                     <div>
                         <h2 class="text-3xl md:text-4xl font-bold mb-4">超越運氣的 <span class="text-indigo-400">智力競技</span></h2>
-                        <!-- 內容已根據您的最新文案更新 -->
                         <p class="text-gray-300 leading-relaxed">
-                            在我們彰化師範這裡，德州撲克是一項結合數學、心理學與決策科學的智力競技。我們推廣的是一種健康的益智運動，一個能讓你鍛鍊思維、學習風險管理、並磨練心理素質的絕佳平台。我們追求的是技術的切磋與心智的成長。
+                            在我們彰化師範這裡，德州撲克是一項結合數學、心理學與決策科學的智力競技。我們推廣的是一種健康的益智運動，一個能讓你鍛鍊邏輯思維、學習風險管理、並磨練心理素質的絕佳平台。我們追求的是技術的切磋與心智的成長。
                         </p>
                     </div>
                 </div>
@@ -89,35 +178,23 @@
                 <h2 class="text-3xl md:text-4xl font-bold mb-2">為什麼你該加入德州撲克社？</h2>
                 <p class="text-gray-400 mb-12 max-w-2xl mx-auto">這不只是一張牌桌，這是你人生的縮影，你將學到課本以外的關鍵技能。</p>
                 <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <!-- Feature Card 1 -->
                     <div class="bg-gray-800 p-8 rounded-xl hover:bg-gray-700 hover:-translate-y-2 transition-all duration-300 shadow-lg">
-                        <div class="bg-indigo-500/10 text-indigo-400 rounded-lg w-16 h-16 flex items-center justify-center mx-auto mb-6">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" /></svg>
-                        </div>
+                        <div class="bg-indigo-500/10 text-indigo-400 rounded-lg w-16 h-16 flex items-center justify-center mx-auto mb-6"><svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" /></svg></div>
                         <h3 class="text-xl font-bold mb-2">增進邏輯思維</h3>
                         <p class="text-gray-400">學習計算機率、分析牌局，在不完整的資訊下，做出最有利的科學決策。</p>
                     </div>
-                    <!-- Feature Card 2 -->
                     <div class="bg-gray-800 p-8 rounded-xl hover:bg-gray-700 hover:-translate-y-2 transition-all duration-300 shadow-lg">
-                        <div class="bg-indigo-500/10 text-indigo-400 rounded-lg w-16 h-16 flex items-center justify-center mx-auto mb-6">
-                             <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
-                        </div>
+                        <div class="bg-indigo-500/10 text-indigo-400 rounded-lg w-16 h-16 flex items-center justify-center mx-auto mb-6"><svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg></div>
                         <h3 class="text-xl font-bold mb-2">鍛鍊心理素質</h3>
                         <p class="text-gray-400">學會管理情緒、承受壓力，保持冷靜的「撲克臉」，不讓情緒影響你的判斷。</p>
                     </div>
-                    <!-- Feature Card 3 -->
                     <div class="bg-gray-800 p-8 rounded-xl hover:bg-gray-700 hover:-translate-y-2 transition-all duration-300 shadow-lg">
-                         <div class="bg-indigo-500/10 text-indigo-400 rounded-lg w-16 h-16 flex items-center justify-center mx-auto mb-6">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
-                        </div>
+                         <div class="bg-indigo-500/10 text-indigo-400 rounded-lg w-16 h-16 flex items-center justify-center mx-auto mb-6"><svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg></div>
                         <h3 class="text-xl font-bold mb-2">學習風險管理</h3>
                         <p class="text-gray-400">評估每次下注的風險與回報，在有限的籌碼中，最大化你的長期收益。</p>
                     </div>
-                    <!-- Feature Card 4 -->
                     <div class="bg-gray-800 p-8 rounded-xl hover:bg-gray-700 hover:-translate-y-2 transition-all duration-300 shadow-lg">
-                        <div class="bg-indigo-500/10 text-indigo-400 rounded-lg w-16 h-16 flex items-center justify-center mx-auto mb-6">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
-                        </div>
+                        <div class="bg-indigo-500/10 text-indigo-400 rounded-lg w-16 h-16 flex items-center justify-center mx-auto mb-6"><svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283-.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg></div>
                         <h3 class="text-xl font-bold mb-2">拓展人際關係</h3>
                         <p class="text-gray-400">結交來自不同科系、志同道合的朋友，在牌桌上切磋，在生活中成長。</p>
                     </div>
@@ -135,110 +212,154 @@
                 <div class="max-w-4xl mx-auto bg-gray-900 rounded-lg p-8 shadow-2xl">
                     <h3 class="text-2xl font-bold text-center mb-6 text-indigo-400">遊戲基本流程</h3>
                     <div class="grid md:grid-cols-5 gap-4 text-center">
-                        <div class="flex flex-col items-center">
-                            <div class="bg-indigo-500 rounded-full w-16 h-16 flex items-center justify-center text-2xl font-bold">1</div>
-                            <p class="mt-2 font-semibold">盲注</p>
-                            <p class="text-sm text-gray-400">強制下注</p>
+                        <div class="flex flex-col items-center"><div class="bg-indigo-500 rounded-full w-16 h-16 flex items-center justify-center text-2xl font-bold">1</div><p class="mt-2 font-semibold">盲注</p><p class="text-sm text-gray-400">強制下注</p></div>
+                        <div class="flex flex-col items-center"><div class="bg-indigo-500 rounded-full w-16 h-16 flex items-center justify-center text-2xl font-bold">2</div><p class="mt-2 font-semibold">底牌</p><p class="text-sm text-gray-400">每人發2張牌</p></div>
+                        <div class="flex flex-col items-center"><div class="bg-indigo-500 rounded-full w-16 h-16 flex items-center justify-center text-2xl font-bold">3</div><p class="mt-2 font-semibold">下注輪</p><p class="text-sm text-gray-400">四輪行動機會</p></div>
+                        <div class="flex flex-col items-center"><div class="bg-indigo-500 rounded-full w-16 h-16 flex items-center justify-center text-2xl font-bold">4</div><p class="mt-2 font-semibold">公共牌</p><p class="text-sm text-gray-400">共發5張牌</p></div>
+                        <div class="flex flex-col items-center"><div class="bg-indigo-500 rounded-full w-16 h-16 flex items-center justify-center text-2xl font-bold">5</div><p class="mt-2 font-semibold">攤牌比大小</p><p class="text-sm text-gray-400">贏家全拿</p></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Game Section -->
+        <section id="game" class="py-20 bg-gray-900 section-fade-in">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-2">互動練習賽</h2>
+                <p class="text-gray-400 mb-8 max-w-2xl mx-auto">體驗一局完整的德州撲克！看不到對手的牌，你敢跟注嗎？</p>
+                
+                <div class="bg-gray-800 rounded-2xl p-4 md:p-8 max-w-5xl mx-auto shadow-2xl">
+                    
+                    <!-- Game Info Bar -->
+                    <div class="flex justify-between items-center mb-4 text-sm md:text-base">
+                        <div id="opponent-info">
+                            <p>對手籌碼: <span id="opponent-chips">1000</span></p>
                         </div>
-                        <div class="flex flex-col items-center">
-                            <div class="bg-indigo-500 rounded-full w-16 h-16 flex items-center justify-center text-2xl font-bold">2</div>
-                            <p class="mt-2 font-semibold">底牌</p>
-                            <p class="text-sm text-gray-400">每人發2張牌</p>
+                        <div class="text-center">
+                            <p class="font-bold text-lg text-amber-400">底池: <span id="pot-amount">0</span></p>
                         </div>
-                        <div class="flex flex-col items-center">
-                            <div class="bg-indigo-500 rounded-full w-16 h-16 flex items-center justify-center text-2xl font-bold">3</div>
-                            <p class="mt-2 font-semibold">下注輪</p>
-                            <p class="text-sm text-gray-400">四輪行動機會</p>
+                         <div id="player-info">
+                            <p>你的籌碼: <span id="player-chips">1000</span></p>
                         </div>
-                        <div class="flex flex-col items-center">
-                            <div class="bg-indigo-500 rounded-full w-16 h-16 flex items-center justify-center text-2xl font-bold">4</div>
-                            <p class="mt-2 font-semibold">公共牌</p>
-                            <p class="text-sm text-gray-400">共發5張牌</p>
+                    </div>
+
+                    <!-- Community Cards -->
+                    <div class="mb-6 h-32 flex items-center justify-center">
+                        <div id="community-cards" class="flex justify-center gap-2 md:gap-3 flex-wrap">
+                            <!-- Cards will be generated by JS -->
                         </div>
-                        <div class="flex flex-col items-center">
-                            <div class="bg-indigo-500 rounded-full w-16 h-16 flex items-center justify-center text-2xl font-bold">5</div>
-                            <p class="mt-2 font-semibold">攤牌比大小</p>
-                            <p class="text-sm text-gray-400">贏家全拿</p>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-4 md:gap-8 mb-6">
+                        <!-- Opponent Hand -->
+                        <div class="text-center">
+                            <h3 class="text-lg font-bold text-gray-400 mb-2">對手</h3>
+                            <div id="opponent-cards" class="flex justify-center gap-2 md:gap-3 h-28"></div>
                         </div>
+                        <!-- Player Hand -->
+                        <div class="text-center">
+                            <h3 class="text-lg font-bold text-indigo-400 mb-2">你</h3>
+                            <div id="player-cards" class="flex justify-center gap-2 md:gap-3 h-28"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Message Log -->
+                    <div id="message-log" class="bg-gray-900 rounded-lg p-3 min-h-[110px] text-left text-sm text-gray-300 mb-6 overflow-y-auto"></div>
+
+                    <!-- Actions & Result -->
+                    <div id="game-controls">
+                        <div id="actions-panel" class="flex flex-col sm:flex-row items-center justify-center gap-3 mb-4">
+                            <button id="btn-fold" class="game-btn bg-red-600 hover:bg-red-700 text-white w-full sm:w-auto">棄牌</button>
+                            <button id="btn-check-call" class="game-btn bg-gray-500 hover:bg-gray-600 text-white w-full sm:w-auto">過牌</button>
+                            <button id="btn-raise" class="game-btn bg-blue-600 hover:bg-blue-700 text-white w-full sm:w-auto">加注</button>
+                        </div>
+                        <div id="raise-panel" class="hidden items-center gap-4 text-center">
+                            <input type="range" id="raise-slider" min="20" max="1000" step="10" class="w-full">
+                            <span id="raise-amount" class="font-bold text-indigo-400 w-20">20</span>
+                            <button id="btn-confirm-raise" class="game-btn bg-indigo-500 hover:bg-indigo-600 text-white">確認加注</button>
+                        </div>
+                         <div id="result-panel" class="hidden text-center">
+                             <p id="result-message" class="text-2xl font-bold mb-4"></p>
+                             <button id="btn-new-hand" class="game-btn bg-green-600 hover:bg-green-700 text-white">開始新的一局</button>
+                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Activities Section -->
-        <section id="activities" class="py-20 bg-gray-900 section-fade-in">
+        <section id="activities" class="py-20 bg-gray-800 section-fade-in">
             <div class="container mx-auto px-6">
                  <div class="text-center mb-12">
                     <h2 class="text-3xl md:text-4xl font-bold">我們的<span class="text-indigo-400">精彩活動</span></h2>
                     <p class="text-gray-400 mt-2">從新手到高手，我們都有適合你的活動。</p>
                 </div>
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg">
+                     <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg">
                         <img src="324504.jpg" alt="新手教學" class="w-full h-48 object-cover">
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-2">完整新手教學</h3>
-                            <p class="text-gray-400">專為對撲克一無所知的新手設計，從規則到基礎策略，帶你輕鬆入門。</p>
-                        </div>
+                        <div class="p-6"><h3 class="text-xl font-bold mb-2">完整新手教學</h3><p class="text-gray-400">專為對撲克一無所知的新手設計，從規則到基礎策略，帶你輕鬆入門。</p></div>
                     </div>
                     <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg">
                         <img src="324505.jpg" alt="社員練習與交流" class="w-full h-48 object-cover">
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-2">不定期小比賽</h3>
-                            <p class="text-gray-400">舉辦刺激的小型競賽，讓你與各路好手交流牌技，感受競技的樂趣。</p>
-                        </div>
+                        <div class="p-6"><h3 class="text-xl font-bold mb-2">不定期小比賽</h3><p class="text-gray-400">舉辦刺激的小型競賽，讓你與各路好手交流牌技，感受競技的樂趣。</p></div>
                     </div>
                     <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg">
                         <img src="324939.jpg" alt="校外活動" class="w-full h-48 object-cover">
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-2">校外交流活動</h3>
-                            <p class="text-gray-400">安排與他校社團的交流賽或參訪活動，拓展你的撲克視野。</p>
-                        </div>
+                        <div class="p-6"><h3 class="text-xl font-bold mb-2">校外交流活動</h3><p class="text-gray-400">安排與他校社團的交流賽或參訪活動，拓展你的撲克視野。</p></div>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Join Us Section -->
-        <section id="join" class="py-20 bg-gray-800 section-fade-in">
+        <section id="join" class="py-20 bg-gray-900 section-fade-in">
             <div class="container mx-auto px-6 text-center">
                 <h2 class="text-4xl md:text-5xl font-black mb-4">準備好迎接挑戰了嗎？</h2>
                 <p class="text-gray-300 text-lg max-w-2xl mx-auto mb-8">
                     無論你是完全的新手，還是尋找對手的資深玩家，<br>彰師大德州撲克社都歡迎你的加入！
                 </p>
-                <a href="#" class="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-4 px-10 rounded-lg text-xl transition-transform duration-300 ease-in-out transform hover:scale-105 inline-block">
+                <a href="https://line.me/R/ti/g/g_3vfyG_vd" target="_blank" rel="noopener noreferrer" class="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-4 px-10 rounded-lg text-xl transition-transform duration-300 ease-in-out transform hover:scale-105 inline-block">
                     立即加入我們!!
                 </a>
                 <div class="mt-16 text-gray-400">
-                    <p class="text-lg mb-6">追蹤我們的 Instagram，掌握最新社課與活動資訊！</p>
-                    
+                    <p class="text-lg mb-6">追蹤我們的社群，掌握最新社課與活動資訊！</p>
                     <div class="flex items-center justify-center space-x-3 md:space-x-4">
-                        <!-- Spade Icon -->
-                        <svg class="w-8 h-8 md:w-10 md:h-10 text-gray-300 hover:text-white transition-transform duration-300 transform hover:scale-125" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                           <path d="M12.93,2.62a1,1,0,0,0-1.86,0L6.4,11.16a1,1,0,0,0,1,1.53H16.54a1,1,0,0,0,1-1.53ZM12,14.69a1,1,0,0,0-1,1V22h2V15.69A1,1,0,0,0,12,14.69Z"/>
-                        </svg>
+                        <!-- Spade Card -->
+                        <div class="card card-sm">
+                            <div class="rank-top-left">A</div>
+                            <div class="suit-center">♠</div>
+                            <div class="rank-bottom-right">A</div>
+                        </div>
 
-                        <!-- Diamond Icon -->
-                        <svg class="w-8 h-8 md:w-10 md:h-10 text-red-400 hover:text-red-300 transition-transform duration-300 transform hover:scale-125" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L1 12l11 10 11-10L12 2z"/></svg>
+                        <!-- Diamond Card -->
+                        <div class="card card-sm is-red">
+                            <div class="rank-top-left">A</div>
+                            <div class="suit-center">♦</div>
+                            <div class="rank-bottom-right">A</div>
+                        </div>
 
                         <!-- Instagram Button -->
-                        <a href="https://www.instagram.com/ncue_poker?igsh=aXEwZ3BuYnhsdWVn" target="_blank" rel="noopener noreferrer" 
-                           class="bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 text-white font-bold py-3 px-6 md:py-4 md:px-8 rounded-full transition-transform duration-300 ease-in-out transform hover:scale-110 shadow-lg text-lg flex items-center space-x-3">
-                             <svg class="w-6 h-6 md:w-7 md:h-7" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.689-.073-4.948-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4s1.791-4 4-4 4 1.79 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44 1.441-.645 1.441-1.44c0-.795-.645-1.44-1.441-1.44z"/></svg>
-                             <span>Follow on IG</span>
+                        <a href="https://www.instagram.com/ncue_poker?igsh=aXEwZ3BuYnhsdWVn" target="_blank" rel="noopener noreferrer" class="bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 text-white font-bold py-3 px-6 md:py-4 md:px-8 rounded-full transition-transform duration-300 ease-in-out transform hover:scale-110 shadow-lg text-lg flex items-center space-x-3">
+                            <svg class="w-6 h-6 md:w-7 md:h-7" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.689-.073-4.948-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4s1.791-4 4-4 4 1.79 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44 1.441-.645 1.441-1.44c0-.795-.645-1.44-1.441-1.44z"/></svg><span>Follow on IG</span>
                         </a>
 
-                        <!-- Heart Icon -->
-                         <svg class="w-8 h-8 md:w-10 md:h-10 text-red-400 hover:text-red-300 transition-transform duration-300 transform hover:scale-125" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                        <!-- Heart Card -->
+                        <div class="card card-sm is-red">
+                            <div class="rank-top-left">A</div>
+                            <div class="suit-center">♥</div>
+                            <div class="rank-bottom-right">A</div>
+                        </div>
 
-                        <!-- Club Icon -->
-                        <svg class="w-8 h-8 md:w-10 md:h-10 text-gray-300 hover:text-white transition-transform duration-300 transform hover:scale-125" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M18.15,10.9a4.24,4.24,0,0,0-2.3-3.44,4.3,4.3,0,0,0-2-3.6,4.23,4.23,0,1,0-7.7,0,4.3,4.3,0,0,0-2,3.6A4.24,4.24,0,0,0,1.85,10.9a4.3,4.3,0,0,0,0,2.2,a4.24,4.24,0,0,0,2.3,3.44,4.3,4.3,0,0,0,2,3.6,4.23,4.23,0,1,0,7.7,0,4.3,4.3,0,0,0,2-3.6,4.24,4.24,0,0,0,2.3-3.44A4.3,4.3,0,0,0,18.15,10.9ZM12,15.75a1,1,0,0,0-1,1V22h2V16.75A1,1,0,0,0,12,15.75Z"/>
-                        </svg>
+                        <!-- Club Card -->
+                         <div class="card card-sm">
+                            <div class="rank-top-left">A</div>
+                            <div class="suit-center">♣</div>
+                            <div class="rank-bottom-right">A</div>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
-
     </main>
 
     <!-- Footer -->
@@ -249,33 +370,422 @@
     </footer>
     
     <script>
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
+        // --- Page Animations ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('.section-fade-in');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
                 });
-            });
+            }, { threshold: 0.1 });
+            sections.forEach(section => observer.observe(section));
         });
 
-        // Fade-in animation on scroll
-        const sections = document.querySelectorAll('.section-fade-in');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
+        // --- Interactive Poker Game Logic ---
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- DOM Elements ---
+            const opponentChipsEl = document.getElementById('opponent-chips');
+            const playerChipsEl = document.getElementById('player-chips');
+            const potAmountEl = document.getElementById('pot-amount');
+            const communityCardContainer = document.getElementById('community-cards');
+            const playerCardContainer = document.getElementById('player-cards');
+            const opponentCardContainer = document.getElementById('opponent-cards');
+            const messageLog = document.getElementById('message-log');
+            
+            const actionsPanel = document.getElementById('actions-panel');
+            const raisePanel = document.getElementById('raise-panel');
+            const resultPanel = document.getElementById('result-panel');
+
+            const btnFold = document.getElementById('btn-fold');
+            const btnCheckCall = document.getElementById('btn-check-call');
+            const btnRaise = document.getElementById('btn-raise');
+            const raiseSlider = document.getElementById('raise-slider');
+            const raiseAmountEl = document.getElementById('raise-amount');
+            const btnConfirmRaise = document.getElementById('btn-confirm-raise');
+            const resultMessage = document.getElementById('result-message');
+            const btnNewHand = document.getElementById('btn-new-hand');
+
+            // --- Game Constants & State ---
+            const SUITS = ['♠', '♥', '♦', '♣'];
+            const RANKS = ['2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A'];
+            const RANK_VALUES = {'2':2, '3':3, '4':4, '5':5, '6':6, '7':7, '8':8, '9':9, 'T':10, 'J':11, 'Q':12, 'K':13, 'A':14};
+            const STARTING_CHIPS = 1000;
+            const SMALL_BLIND = 10;
+            const BIG_BLIND = 20;
+
+            let gameState = {};
+
+            // --- Core Game Functions ---
+            function initGameState() {
+                gameState = {
+                    deck: [],
+                    playerHand: [],
+                    opponentHand: [],
+                    communityCards: [],
+                    playerChips: STARTING_CHIPS,
+                    opponentChips: STARTING_CHIPS,
+                    pot: 0,
+                    playerBet: 0,
+                    opponentBet: 0,
+                    currentBet: 0,
+                    round: 'pre-flop', // pre-flop, flop, turn, river, showdown
+                    isPlayerTurn: true,
+                    handOver: false,
+                };
+            }
+            
+            function logMessage(msg, color = 'text-gray-300') {
+                const p = document.createElement('p');
+                p.textContent = msg;
+                p.className = color;
+                messageLog.appendChild(p);
+                messageLog.scrollTop = messageLog.scrollHeight;
+            }
+
+            function createDeck() {
+                gameState.deck = [];
+                for (const suit of SUITS) {
+                    for (const rank of RANKS) {
+                        gameState.deck.push({ rank, suit, value: RANK_VALUES[rank] });
+                    }
                 }
-            });
-        }, {
-            threshold: 0.1
-        });
+            }
 
-        sections.forEach(section => {
-            observer.observe(section);
+            function shuffleDeck() {
+                let deck = gameState.deck;
+                for (let i = deck.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [deck[i], deck[j]] = [deck[j], deck[i]];
+                }
+            }
+            
+            function createCardElement(card, isHidden = false) {
+                const cardEl = document.createElement('div');
+                const cardClasses = isHidden ? 'card card-back' : `card ${card.suit === '♥' || card.suit === '♦' ? 'is-red' : ''}`;
+                cardEl.className = cardClasses;
+
+                if (!isHidden) {
+                    cardEl.innerHTML = `
+                        <div class="rank-top-left">${card.rank}</div>
+                        <div class="suit-center">${card.suit}</div>
+                        <div class="rank-bottom-right">${card.rank}</div>
+                    `;
+                }
+                return cardEl;
+            }
+
+            function updateUI(revealOpponent = false) {
+                playerChipsEl.textContent = gameState.playerChips;
+                opponentChipsEl.textContent = gameState.opponentChips;
+                potAmountEl.textContent = gameState.pot;
+
+                playerCardContainer.innerHTML = '';
+                gameState.playerHand.forEach(c => playerCardContainer.appendChild(createCardElement(c)));
+                
+                opponentCardContainer.innerHTML = '';
+                gameState.opponentHand.forEach(c => opponentCardContainer.appendChild(createCardElement(c, !revealOpponent)));
+                
+                communityCardContainer.innerHTML = '';
+                gameState.communityCards.forEach(c => communityCardContainer.appendChild(createCardElement(c)));
+
+                // Update action buttons
+                if (gameState.isPlayerTurn && !gameState.handOver) {
+                    actionsPanel.classList.remove('hidden');
+                    raisePanel.classList.add('hidden');
+                    resultPanel.classList.add('hidden');
+                    
+                    const callAmount = gameState.currentBet - gameState.playerBet;
+                    if (callAmount > 0) {
+                        btnCheckCall.textContent = `跟注 ${callAmount}`;
+                        btnCheckCall.classList.remove('bg-gray-500', 'hover:bg-gray-600');
+                        btnCheckCall.classList.add('bg-orange-500', 'hover:bg-orange-600');
+                    } else {
+                        btnCheckCall.textContent = '過牌';
+                        btnCheckCall.classList.remove('bg-orange-500', 'hover:bg-orange-600');
+                        btnCheckCall.classList.add('bg-gray-500', 'hover:bg-gray-600');
+                    }
+                    
+                    // Raise logic
+                    const minRaise = gameState.currentBet > BIG_BLIND ? gameState.currentBet * 2 : BIG_BLIND * 2;
+                    raiseSlider.min = Math.min(minRaise, gameState.playerChips);
+                    raiseSlider.max = gameState.playerChips;
+                    raiseSlider.value = raiseSlider.min;
+                    raiseAmountEl.textContent = raiseSlider.value;
+                    btnRaise.disabled = gameState.playerChips <= callAmount;
+
+                } else {
+                    actionsPanel.classList.add('hidden');
+                    raisePanel.classList.add('hidden');
+                }
+            }
+            
+            // --- Hand Evaluation (Re-using the complex logic) ---
+            function getHandDetails(hand) {
+                const allCards = [...hand, ...gameState.communityCards].sort((a, b) => b.value - a.value);
+                const getCombinations = (arr, k) => { if (k === 0) return [[]]; if (arr.length < k) return []; const first = arr[0]; const rest = arr.slice(1); const combsWithoutFirst = getCombinations(rest, k); const combsWithFirst = getCombinations(rest, k - 1).map(comb => [first, ...comb]); return [...combsWithFirst, ...combsWithoutFirst]; };
+                const all5CardHands = getCombinations(allCards, 5);
+                let bestHand = { rank: 0, name: '高牌', cards: all5CardHands[0] };
+                for(const h of all5CardHands) {
+                    const evaluated = evaluate5CardHand(h);
+                    if(evaluated.rank > bestHand.rank) { bestHand = evaluated; }
+                    else if (evaluated.rank === bestHand.rank) {
+                         for (let i = 0; i < evaluated.cards.length; i++) { if (evaluated.cards[i].value > bestHand.cards[i].value) { bestHand = evaluated; break; } if (evaluated.cards[i].value < bestHand.cards[i].value) { break; } }
+                    }
+                }
+                return bestHand;
+            }
+            function evaluate5CardHand(hand) {
+                hand.sort((a,b) => b.value - a.value);
+                const ranks = hand.map(c => c.value);
+                const suits = hand.map(c => c.suit);
+                const rankCounts = ranks.reduce((acc, rank) => { acc[rank] = (acc[rank] || 0) + 1; return acc; }, {});
+                const counts = Object.values(rankCounts).sort((a, b) => b - a);
+                const isFlush = new Set(suits).size === 1;
+                let isStraight = false;
+                const uniqueRanks = [...new Set(ranks)];
+                if (uniqueRanks.length >= 5) {
+                    for (let i = 0; i <= uniqueRanks.length - 5; i++) {
+                        if (uniqueRanks[i] - uniqueRanks[i+4] === 4) { isStraight = true; break; }
+                    }
+                }
+                const isAceLowStraight = JSON.stringify(uniqueRanks.slice(-5)) === JSON.stringify([14, 5, 4, 3, 2]);
+                let rank = 0; let name = '高牌';
+                if (isStraight && isFlush) { rank = 8; name = '同花順'; }
+                else if (counts[0] === 4) { rank = 7; name = '四條'; }
+                else if (counts[0] === 3 && counts[1] === 2) { rank = 6; name = '葫蘆'; }
+                else if (isFlush) { rank = 5; name = '同花'; }
+                else if (isStraight || isAceLowStraight) { rank = 4; name = '順子'; }
+                else if (counts[0] === 3) { rank = 3; name = '三條'; }
+                else if (counts[0] === 2 && counts[1] === 2) { rank = 2; name = '兩對'; }
+                else if (counts[0] === 2) { rank = 1; name = '一對'; }
+                return { rank, name: `${name}`, cards: hand };
+            }
+
+            // --- Player Action Handlers ---
+            btnFold.addEventListener('click', () => {
+                logMessage('你棄牌了。', 'text-red-400');
+                endHand('opponent');
+            });
+            btnCheckCall.addEventListener('click', () => {
+                const callAmount = gameState.currentBet - gameState.playerBet;
+                if(callAmount > 0) {
+                     gameState.playerChips -= callAmount;
+                     gameState.playerBet += callAmount;
+                     gameState.pot += callAmount;
+                     logMessage(`你跟注 ${callAmount}。`);
+                } else {
+                    logMessage('你過牌。');
+                }
+                gameState.isPlayerTurn = false;
+                updateUI();
+                checkRoundEnd();
+            });
+            btnRaise.addEventListener('click', () => {
+                actionsPanel.classList.add('hidden');
+                raisePanel.classList.remove('hidden');
+            });
+            raiseSlider.addEventListener('input', (e) => {
+                raiseAmountEl.textContent = e.target.value;
+            });
+            btnConfirmRaise.addEventListener('click', () => {
+                const raiseAmount = parseInt(raiseSlider.value);
+                const totalBet = raiseAmount;
+                const amountToPot = totalBet - gameState.playerBet;
+                
+                gameState.playerChips -= amountToPot;
+                gameState.playerBet = totalBet;
+                gameState.pot += amountToPot;
+                gameState.currentBet = totalBet;
+                
+                logMessage(`你加注到 ${totalBet}。`, 'text-blue-400');
+                
+                gameState.isPlayerTurn = false;
+                updateUI();
+                checkRoundEnd();
+            });
+
+            // --- Game Flow & AI ---
+            function checkRoundEnd() {
+                if(gameState.playerBet === gameState.opponentBet) {
+                    // Betting for this round is equal, move to next round
+                    setTimeout(nextRound, 1000);
+                } else {
+                    // Opponent needs to act
+                    setTimeout(opponentTurn, 1500);
+                }
+            }
+
+            function opponentTurn() {
+                // Simple AI logic
+                const opponentHandStrength = getHandDetails(gameState.opponentHand).rank;
+                const callAmount = gameState.currentBet - gameState.opponentBet;
+                
+                if (callAmount === 0) { // Player checked
+                    if (opponentHandStrength > 0 || Math.random() < 0.3) { // Bet with a pair or better, or bluff 30%
+                        const betAmount = Math.max(BIG_BLIND, Math.floor(gameState.pot * 0.5));
+                        if(gameState.opponentChips >= betAmount) {
+                            gameState.opponentChips -= betAmount;
+                            gameState.opponentBet += betAmount;
+                            gameState.pot += betAmount;
+                            gameState.currentBet = gameState.opponentBet;
+                            logMessage(`對手下注 ${betAmount}。`, 'text-yellow-400');
+                        } else { // All-in
+                             logMessage('對手 全下!', 'text-yellow-400 font-bold');
+                             // Simplified all in logic
+                             gameState.pot += gameState.opponentChips;
+                             gameState.opponentBet += gameState.opponentChips;
+                             gameState.currentBet = gameState.opponentBet;
+                             gameState.opponentChips = 0;
+                        }
+                    } else {
+                        logMessage('對手過牌。');
+                    }
+                } else { // Player has bet or raised
+                    if (opponentHandStrength >= 2) { // Call with two pair or better
+                         gameState.opponentChips -= callAmount;
+                         gameState.opponentBet += callAmount;
+                         gameState.pot += callAmount;
+                         logMessage(`對手跟注 ${callAmount}。`);
+                    } else if (opponentHandStrength > 0 && Math.random() < 0.5) { // Call with a pair 50% of the time
+                         gameState.opponentChips -= callAmount;
+                         gameState.opponentBet += callAmount;
+                         gameState.pot += callAmount;
+                         logMessage(`對手跟注 ${callAmount}。`);
+                    } else {
+                        logMessage('對手棄牌。', 'text-red-400');
+                        endHand('player');
+                        return;
+                    }
+                }
+                
+                gameState.isPlayerTurn = true;
+                if(gameState.playerBet === gameState.opponentBet) {
+                    setTimeout(nextRound, 1000);
+                } else {
+                    updateUI();
+                }
+            }
+            
+            function nextRound() {
+                if (gameState.handOver) return;
+
+                gameState.currentBet = 0;
+                gameState.playerBet = 0;
+                gameState.opponentBet = 0;
+                gameState.isPlayerTurn = true; // Player acts first post-flop
+
+                switch(gameState.round) {
+                    case 'pre-flop':
+                        gameState.round = 'flop';
+                        gameState.communityCards.push(gameState.deck.pop(), gameState.deck.pop(), gameState.deck.pop());
+                        logMessage('--- 發下翻牌 ---', 'text-indigo-400');
+                        break;
+                    case 'flop':
+                        gameState.round = 'turn';
+                        gameState.communityCards.push(gameState.deck.pop());
+                        logMessage('--- 發下轉牌 ---', 'text-indigo-400');
+                        break;
+                    case 'turn':
+                        gameState.round = 'river';
+                        gameState.communityCards.push(gameState.deck.pop());
+                        logMessage('--- 發下河牌 ---', 'text-indigo-400');
+                        break;
+                    case 'river':
+                        gameState.round = 'showdown';
+                        showdown();
+                        return;
+                }
+                updateUI();
+            }
+
+            function showdown() {
+                const playerDetails = getHandDetails(gameState.playerHand);
+                const opponentDetails = getHandDetails(gameState.opponentHand);
+                
+                logMessage('--- 攤牌 ---', 'text-amber-400');
+                logMessage(`你的牌型: ${playerDetails.name}`);
+                logMessage(`對手牌型: ${opponentDetails.name}`);
+                
+                let winner = 'tie';
+                 if (playerDetails.rank > opponentDetails.rank) { winner = 'player'; }
+                 else if (opponentDetails.rank > opponentDetails.rank) { winner = 'opponent'; }
+                 else {
+                     for (let i = 0; i < 5; i++) {
+                         if (playerDetails.cards[i].value > opponentDetails.cards[i].value) { winner = 'player'; break; }
+                         if (opponentDetails.cards[i].value > playerDetails.cards[i].value) { winner = 'opponent'; break; }
+                     }
+                 }
+                endHand(winner, true);
+            }
+
+            function endHand(winner, wasShowdown = false) {
+                gameState.handOver = true;
+                actionsPanel.classList.add('hidden');
+                raisePanel.classList.add('hidden');
+                resultPanel.classList.remove('hidden');
+
+                if (winner === 'player') {
+                    resultMessage.textContent = '你贏了！';
+                    resultMessage.className = "text-2xl font-bold mb-4 text-green-400";
+                    gameState.playerChips += gameState.pot;
+                } else if (winner === 'opponent') {
+                    resultMessage.textContent = '對手贏了。';
+                    resultMessage.className = "text-2xl font-bold mb-4 text-red-400";
+                    gameState.opponentChips += gameState.pot;
+                } else {
+                     resultMessage.textContent = '平手分池！';
+                    resultMessage.className = "text-2xl font-bold mb-4 text-yellow-400";
+                    gameState.playerChips += gameState.pot / 2;
+                    gameState.opponentChips += gameState.pot / 2;
+                }
+                
+                updateUI(true); // reveal opponent's cards
+            }
+
+            function startNewHand() {
+                 if (gameState.playerChips <= 0) {
+                     alert("你破產了！重新開始遊戲。");
+                     initGameState();
+                 } else if (gameState.opponentChips <= 0) {
+                     alert("對手破產了！你獲勝了！");
+                     initGameState();
+                 }
+
+                messageLog.innerHTML = '';
+                createDeck();
+                shuffleDeck();
+                
+                gameState.handOver = false;
+                gameState.round = 'pre-flop';
+                gameState.communityCards = [];
+                gameState.playerHand = [gameState.deck.pop(), gameState.deck.pop()];
+                gameState.opponentHand = [gameState.deck.pop(), gameState.deck.pop()];
+                
+                // Blinds
+                gameState.playerChips -= SMALL_BLIND;
+                gameState.opponentChips -= BIG_BLIND;
+                gameState.playerBet = SMALL_BLIND;
+                gameState.opponentBet = BIG_BLIND;
+                gameState.pot = SMALL_BLIND + BIG_BLIND;
+                gameState.currentBet = BIG_BLIND;
+                gameState.isPlayerTurn = true;
+                
+                logMessage(`--- 新的一局開始 (盲注 ${SMALL_BLIND}/${BIG_BLIND}) ---`);
+                logMessage(`你下小盲注 ${SMALL_BLIND}。`);
+                logMessage(`對手下大盲注 ${BIG_BLIND}。`);
+
+                updateUI();
+            }
+            
+            btnNewHand.addEventListener('click', startNewHand);
+            
+            // --- Initial Game Start ---
+            initGameState();
+            startNewHand();
         });
     </script>
-
 </body>
 </html>
 
